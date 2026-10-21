@@ -1,0 +1,73 @@
+[project]
+name = "fastapi-production-starter"
+version = "0.1.0"
+description = "A production-oriented FastAPI starter with async PostgreSQL, JWT authentication, migrations, Docker, tests, and CI."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [
+  { name = "Anas Emad Alkhoddar" },
+]
+dependencies = [
+  "alembic>=1.17.2",
+  "asyncpg>=0.31.0",
+  "email-validator>=2.3.0",
+  "fastapi>=0.124.2",
+  "pwdlib[argon2]>=0.3.0",
+  "pydantic-settings>=2.12.0",
+  "pyjwt>=2.10.1",
+  "python-multipart>=0.0.20",
+  "sqlalchemy[asyncio]>=2.0.45",
+  "uvicorn[standard]>=0.38.0",
+]
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[project.optional-dependencies]
+dev = [
+  "aiosqlite>=0.22.0",
+  "httpx>=0.28.1",
+  "pytest>=9.0.2",
+  "pytest-asyncio>=1.3.0",
+  "ruff>=0.14.9",
+]
+
+[dependency-groups]
+dev = [
+  "aiosqlite>=0.22.0",
+  "httpx>=0.28.1",
+  "pytest>=9.0.2",
+  "pytest-asyncio>=1.3.0",
+  "ruff>=0.14.9",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "B",
+  "UP",
+  "ASYNC",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+  "error",
+]
